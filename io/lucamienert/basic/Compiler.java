@@ -5,9 +5,9 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import io.lucamienert.basic.Parser.Parser;
 import io.lucamienert.basic.codegen.CodeGenerator;
 import io.lucamienert.basic.codegen.CodeGeneratorX86_64;
+import io.lucamienert.basic.parser.Parser;
 import io.lucamienert.basic.token.Tokenizer;
 
 public class Compiler {
