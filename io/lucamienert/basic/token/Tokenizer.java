@@ -2,6 +2,7 @@ package io.lucamienert.basic.token;
 
 import io.lucamienert.basic.token.Token;
 import io.lucamienert.basic.token.TokenType;
+import io.lucamienert.basic.utils.TokenizerUtils;
 
 import java.io.Reader;
 import java.io.StringReader;
@@ -18,6 +19,15 @@ public class Tokenizer implements Closeable {
 
     public Tokenizer(String str) {
         this.reader = new StringReader(str);
+    }
+
+    private int peek() throws IOException {
+        reader.mark(1);
+        try {
+            return reader.read();
+        } finally {
+            reader.reset();
+        }
     }
 
     public Token nextToken() throws IOException {
@@ -47,19 +57,19 @@ public class Tokenizer implements Closeable {
                 return new Token(TokenType.EQ);
             else if (ch == '>' || ch == '<')
                 return nextRelationalOperatorToken(ch);
-            else if (isAlpha(ch) && !isAlpha(peek(reader)))
+            else if (TokenizerUtils.isAlpha(ch) && !TokenizerUtils.isAlpha(peek()))
                 return new Token(TokenType.VAR, new String(new char[] { (char) ch }));
-            else if (isAlpha(ch))
+            else if (TokenizerUtils.isAlpha(ch))
                 return nextKeywordToken(ch);
-            else if (isDigit(ch))
+            else if (TokenizerUtils.isDigit(ch))
                 return nextNumberToken(ch);
-            else if (!isWhitespace(ch))
+            else if (!TokenizerUtils.isWhitespace(ch))
                 throw new IOException("Unexpected character: " + ch);
         }
     }
 
     private Token nextRelationalOperatorToken(int first) throws IOException {
-        int second = peek(reader);
+        int second = peek();
 
         if (first == '>') {
             if (second == '<') {
@@ -88,6 +98,7 @@ public class Tokenizer implements Closeable {
 
     private Token nextStringToken() throws IOException {
         StringBuilder buf = new StringBuilder();
+
         for (;;) {
             int ch = reader.read();
             if (ch == -1)
@@ -104,8 +115,8 @@ public class Tokenizer implements Closeable {
         StringBuilder buf = new StringBuilder();
         buf.append((char) first);
         for (;;) {
-            int ch = peek(reader);
-            if (!isAlpha(ch))
+            int ch = peek();
+            if (!TokenizerUtils.isAlpha(ch))
                 break;
 
             reader.skip(1);
@@ -118,8 +129,8 @@ public class Tokenizer implements Closeable {
         StringBuilder buf = new StringBuilder();
         buf.append((char) first);
         for (;;) {
-            int ch = peek(reader);
-            if (!isDigit(ch))
+            int ch = peek();
+            if (!TokenizerUtils.isDigit(ch))
                 break;
 
             reader.skip(1);

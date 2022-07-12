@@ -1,13 +1,12 @@
 package io.lucamienert.basic.instruction;
 
-import java.util.Objects;
 import java.util.Optional;
 
 public class Instruction {
 
     private final OpCode opcode;
-    private final Optional<string> stringOperand;
-    private final Optional<string> intOperand;
+    private final Optional<String> stringOperand;
+    private final Optional<Integer> intOperand;
 
     public Instruction(OpCode opcode) {
         this.opcode = opcode;
@@ -27,7 +26,7 @@ public class Instruction {
         this.intOperand = Optional.of(operand);
     }
 
-    public Opcode getOpcode() {
+    public OpCode getOpcode() {
         return opcode;
     }
 

@@ -1,6 +1,5 @@
 package io.lucamienert.basic.token;
 
-import java.util.Objects;
 import java.util.Optional;
 
 public class Token {
