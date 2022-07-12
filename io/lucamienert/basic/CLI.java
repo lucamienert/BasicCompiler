@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 
 import io.lucamienert.basic.exceptions.CLIException;
 
+@SuppressWarnings("all")
 public class CLI {
 
     private Compiler compiler;
@@ -29,8 +30,8 @@ public class CLI {
         if(input.isEmpty() || input == null)
             throw new CLIException("Input is empty or null!");
 
-        if(input.equals("compile")) {
-            compiler.compile(null);
-        }
+        // if(input.equals("compile")) {
+        //     compiler.compile(null);
+        // }
     }
 }

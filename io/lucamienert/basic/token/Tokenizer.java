@@ -1,7 +1,5 @@
 package io.lucamienert.basic.token;
 
-import io.lucamienert.basic.token.Token;
-import io.lucamienert.basic.token.TokenType;
 import io.lucamienert.basic.utils.TokenizerUtils;
 
 import java.io.Reader;
