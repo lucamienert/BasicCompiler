@@ -15,7 +15,7 @@ public class InputStatement : Statement
         {
             instructionSequence.Append(
                 new Instruction(OpCode.IN),
-                new Instruction(OpCode.STORE, name))
+                new Instruction(OpCode.STORE, name)
             );
         }
     }
