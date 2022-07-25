@@ -36,11 +36,14 @@ public class Tokenizer
                 case '"': return new Token(TokenType.STRING);
                 case '=': return new Token(TokenType.EQ);
                 case '>': return NextRelationalOperatorToken(current);
-                case '<': return NextRelationalOperatorToken(current); 
+                case '<': return NextRelationalOperatorToken(current);
+                default: break;
             }
 
-            if(char.IsWhiteSpace((char)current))
+            if (char.IsWhiteSpace((char)current))
                  throw new UnexpectedCharacterException((char)current);
+
+
         }
     }
 
