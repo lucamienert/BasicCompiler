@@ -3,7 +3,7 @@
 public enum RelationalOperator
 {
     EQ = '=',
-    NQ = '!',
+    NE = '!',
     GT = '>',
     LT = '<'
 }
